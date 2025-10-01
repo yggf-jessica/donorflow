@@ -122,9 +122,7 @@ function ReceiverDashboard() {
 
           <nav style={{ marginTop: 16 }}>
             <SideLink active>Home</SideLink>
-            <SideLink onClick={() => setShowCreate(true)}>
-              + Create Campaign
-            </SideLink>
+            {/* 🚫 Removed duplicate "+ Create Campaign" button here */}
           </nav>
 
           <div style={{ marginTop: 24 }}>
@@ -399,7 +397,7 @@ function CampaignModal({ title, initial, onClose, onSubmit, categories = [] }) {
               value={goal}
               onChange={(e) => setGoal(Number(e.target.value))}
               style={styles.input}
-              placeholder="$ 0.00"
+              placeholder="฿ 0.00"
             />
           </div>
           <div>

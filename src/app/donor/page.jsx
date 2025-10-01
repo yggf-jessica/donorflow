@@ -11,7 +11,7 @@ const TEXT_MUTED = "#64748b";
 export default function DonorPage() {
   const { user, setUser } = useAuth();
   const API = process.env.NEXT_PUBLIC_API_URL || "/api";
-  const donorId = user?.dbId || user?.id; // must be a Mongo ObjectId string
+  const donorId = user?.dbId || user?.id;
 
   /* ---------- campaigns ---------- */
   const [items, setItems] = useState([]);
@@ -21,7 +21,9 @@ export default function DonorPage() {
     setLoading(true);
     const res = await fetch(`${API}/campaigns`);
     const json = await res.json();
-    setItems(Array.isArray(json.campaigns) ? json.campaigns : []);
+    // ✅ Only show approved campaigns
+    const campaigns = Array.isArray(json.campaigns) ? json.campaigns : [];
+    setItems(campaigns.filter(c => c.status === "APPROVED"));
     setLoading(false);
   };
   useEffect(() => { loadCampaigns(); }, [API]);
@@ -38,7 +40,7 @@ export default function DonorPage() {
   }, [items, featured]);
 
   /* ---------- tabs / history ---------- */
-  const [tab, setTab] = useState("discover"); // discover | history | profile
+  const [tab, setTab] = useState("discover");
   const [history, setHistory] = useState([]);
   const [hLoading, setHLoading] = useState(false);
 
@@ -50,12 +52,12 @@ export default function DonorPage() {
     setHistory(Array.isArray(json.donations) ? json.donations : []);
     setHLoading(false);
   };
-  useEffect(() => { if (tab === "history") loadHistory(); }, [tab]); // eslint-disable-line
+  useEffect(() => { if (tab === "history") loadHistory(); }, [tab]); 
 
   /* ---------- donation modal ---------- */
-  const [active, setActive] = useState(null); // campaign
+  const [active, setActive] = useState(null); 
   const [amount, setAmount] = useState(100);
-  const [step, setStep] = useState(1); // 1 choose, 2 confirm
+  const [step, setStep] = useState(1); 
   const [working, setWorking] = useState(false);
 
   const openDonate = (c) => { setActive(c); setAmount(100); setStep(1); };
@@ -181,7 +183,7 @@ export default function DonorPage() {
             />
           ) : (
             <ConfirmStep
-              title={`Are you sure you want to contribute $${Number(amount)} to ${active.title}?`}
+              title={`Are you sure you want to contribute ฿${Number(amount)} to ${active.title}?`}
               working={working}
               onCancel={() => setActive(null)}
               onConfirm={confirmDonate}
@@ -231,8 +233,8 @@ function HeroProgress({ raised, goal }) {
         <div style={{ height: "100%", width: `${pct}%`, background: "#a3e635" }} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 13, color: "#e5e7eb" }}>
-        <span>${safeRaised.toLocaleString()} raised</span>
-        <span>Goal: ${safeGoal.toLocaleString()}</span>
+        <span>฿{safeRaised.toLocaleString()} raised</span>
+        <span>Goal: ฿{safeGoal.toLocaleString()}</span>
       </div>
     </div>
   );
@@ -277,11 +279,11 @@ function HistorySection({ loading, items }) {
                 <div>
                   <div style={{ fontWeight: 700 }}>{d.campaign?.title || "Campaign"}</div>
                   <div style={{ color: TEXT_MUTED, fontSize: 13 }}>
-                    Donated ${Number(d.amount).toFixed(2)} • {new Date(d.createdAt).toLocaleString()}
+                    Donated ฿{Number(d.amount).toFixed(2)} • {new Date(d.createdAt).toLocaleString()}
                   </div>
                 </div>
               </div>
-              <div style={{ fontWeight: 700 }}>${Number(d.amount).toFixed(2)}</div>
+              <div style={{ fontWeight: 700 }}>฿{Number(d.amount).toFixed(2)}</div>
             </li>
           ))}
         </ul>
@@ -320,8 +322,8 @@ function CampaignCard({ c, onDonate }) {
           <div style={{ ...styles.progressMiniFill, width: `${pct}%` }} />
         </div>
         <div style={styles.miniAmounts}>
-          <strong>${fmtMoney(raised)}</strong>
-          <span>of ${fmtMoney(goal)}</span>
+          <strong>฿{fmtMoney(raised)}</strong>
+          <span>of ฿{fmtMoney(goal)}</span>
         </div>
       </div>
 
@@ -349,15 +351,15 @@ function AmountStep({ title, amount, setAmount, onCancel, onContinue }) {
     <>
       <h3 style={{ marginTop: 0 }}>{title}</h3>
       <div style={styles.amountGrid}>
-        {[10, 25, 50, 100].map((v) => (
+        {[100, 250, 500, 1000].map((v) => (
           <button key={v} onClick={setPreset(v)} style={{ ...styles.amountBtn, ...(isSel(v) ? styles.amountBtnSel : {}) }}>
-            ${v}
+            ฿{v}
           </button>
         ))}
       </div>
       <div style={styles.customRow}>
         <input type="number" min="1" value={amount} onChange={(e)=>setAmount(Number(e.target.value))} style={styles.input} />
-        <span style={{ color: "#9ca3af" }}>$</span>
+        <span style={{ color: "#9ca3af" }}>฿</span>
       </div>
       <div style={styles.modalActions}>
         <button onClick={onCancel} style={styles.cancelBtn}>Cancel</button>

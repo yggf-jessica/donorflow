@@ -85,7 +85,6 @@ function TopBar({ name }) {
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <span style={{ color: MUTED }}>Welcome,&nbsp;</span>
         <strong>{name || "Admin"}</strong>
-        <button style={styles.donateBtn}>Donate</button>
       </div>
     </div>
   );
@@ -93,7 +92,6 @@ function TopBar({ name }) {
 
 /* ============================== PANELS ============================== */
 
-/* Campaigns: show ALL campaigns; actions only if status missing/PENDING */
 function CampaignsPanel() {
   const [rows, setRows] = useState([]);
   const load = async () => {
@@ -119,8 +117,8 @@ function CampaignsPanel() {
         rows={rows.map((c) => [
           <div key={"t"+c._id} style={{ fontWeight: 600 }}>{c.title}</div>,
           <code key={"r"+c._id} style={{ color: MUTED }}>{(c.receiver || "").toString().slice(-6)}</code>,
-          `$${fmtMoney(c.goalAmount)}`,
-          `$${fmtMoney(c.raisedAmount)}`,
+          `฿${fmtMoney(c.goalAmount)}`,
+          `฿${fmtMoney(c.raisedAmount)}`,
           <StatusBadge s={c.status || "UNREVIEWED"} key={"s"+c._id} />,
           !c.status || c.status === "PENDING"
             ? <RowActions
@@ -135,7 +133,6 @@ function CampaignsPanel() {
   );
 }
 
-/* Categories CRUD */
 function CategoriesPanel() {
   const [rows, setRows] = useState([]);
   const [name, setName] = useState("");
@@ -213,7 +210,6 @@ function CategoriesPanel() {
   );
 }
 
-/* Donations (global donor history) */
 function DonationsPanel() {
   const [rows, setRows] = useState([]);
   useEffect(() => {
@@ -226,7 +222,7 @@ function DonationsPanel() {
         rows={rows.map((d) => [
           `${d.donor?.name || ""} (${d.donor?.email || ""})`,
           d.campaign?.title || "—",
-          `$${fmtMoney(d.amount)}`,
+          `฿${fmtMoney(d.amount)}`,
           d.status,
           new Date(d.createdAt).toLocaleString(),
         ])}
@@ -235,19 +231,34 @@ function DonationsPanel() {
   );
 }
 
-/* Users (no admins, no status column) */
 function UsersPanel() {
   const [rows, setRows] = useState([]);
+  const [filter, setFilter] = useState("ALL");
+
   useEffect(() => {
     fetch(`${API}/admin/users`).then(r=>r.json()).then(j=>{
       setRows((j.users || []).filter(u => u.role !== "ADMIN"));
     });
   }, []);
+
+  const filtered = rows.filter(u =>
+    filter === "ALL" ? true : u.role === filter
+  );
+
   return (
-    <Card title="All Users">
+    <Card
+      title="All Users"
+      right={
+        <select value={filter} onChange={(e)=>setFilter(e.target.value)} style={styles.input}>
+          <option value="ALL">All</option>
+          <option value="DONOR">Donors</option>
+          <option value="RECEIVER">Receivers</option>
+        </select>
+      }
+    >
       <Table
         cols={["Name", "Email", "Role", "Created"]}
-        rows={rows.map((u) => [
+        rows={filtered.map((u) => [
           u.name,
           u.email,
           <RoleBadge key={"rb"+u._id} r={u.role} />,
@@ -361,7 +372,6 @@ const styles = {
   content: { display: "flex", flexDirection: "column", gap: 16 },
   topBar: { background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14, padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center" },
   brandMark: { width: 36, height: 18, borderRadius: 4, background: GREEN },
-  donateBtn: { padding: "8px 12px", borderRadius: 10, border: "none", background: GREEN, color: "#fff", fontWeight: 700, cursor: "pointer" },
 
   card: { background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 14, padding: 14 },
   cardHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 },
