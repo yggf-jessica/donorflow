@@ -195,7 +195,7 @@ function ReceiverDashboard() {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 ...payload,
-                receiverId: receiverId || DEMO_RECEIVER_ID,
+                receiverEmail,  // 👈 use the logged-in user’s email
               }),
             });
             const json = await res.json().catch(() => ({}));
@@ -410,15 +410,15 @@ function CampaignModal({ title, initial, onClose, onSubmit, categories = [] }) {
               <option value="">Select a category</option>
               {categories.length
                 ? categories.map((ct) => (
-                    <option key={ct._id} value={ct.name}>
-                      {ct.name}
-                    </option>
-                  ))
+                  <option key={ct._id} value={ct.name}>
+                    {ct.name}
+                  </option>
+                ))
                 : ["Health", "Education", "Community", "Animals"].map((n) => (
-                    <option key={n} value={n}>
-                      {n}
-                    </option>
-                  ))}
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
             </select>
           </div>
         </div>
