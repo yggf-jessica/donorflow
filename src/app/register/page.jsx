@@ -3,8 +3,9 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense } from "react";
 
-export default function RegisterPage() {
+function RegisterContent() {
   const router = useRouter();
   const params = useSearchParams();
   const initialRole = useMemo(() => params.get("role") || "DONOR", [params]);
@@ -25,7 +26,7 @@ export default function RegisterPage() {
       const res = await fetch(`${API}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, role }),
+        body: JSON.stringify({ name, email, password, role }),
       });
 
       const json = await res.json().catch(() => ({}));
@@ -78,6 +79,14 @@ export default function RegisterPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }
 
