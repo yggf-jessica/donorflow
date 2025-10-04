@@ -1,5 +1,5 @@
 <p align="center">
-  <font size="6"><b>DonorFlow</b></font><br>
+  <font size="100"><b>DonorFlow</b></font><br>
   <font size="4"><b>Empowering Kindness Through Giving</b></font>
 </p>
 
