@@ -10,6 +10,7 @@ const BORDER = "#e5e7eb";
 const MUTED = "#64748b";
 const TEXT = "#0f172a";
 
+// test comment
 export default function ReceiverPage() {
   return (
     <RequireRole allow={["RECEIVER"]}>

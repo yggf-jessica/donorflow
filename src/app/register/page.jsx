@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
 
+ // test comment
 function RegisterContent() {
   const router = useRouter();
   const params = useSearchParams();
