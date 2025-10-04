@@ -14,6 +14,7 @@
 
 **DonorFlow** is a full-stack charity and crowdfunding web application that connects **donors**, **receivers**, and **administrators** through a seamless giving experience.  
 Users can contribute to fundraising campaigns, create their own campaigns, or manage donations and users through the admin panel.
+<img width="1919" height="864" alt="Intro" src="https://github.com/user-attachments/assets/5dd7e52b-ee02-437f-aca5-ea9444cf9b3c" />
 
 ---
 
@@ -29,23 +30,33 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 **Authentication & Role Selection**
 - Sign up or log in as **Donor**, **Receiver**, or **Admin**.
 - Intuitive onboarding modal guiding user choice.
+<img width="1919" height="865" alt="Login" src="https://github.com/user-attachments/assets/516c90dd-ab37-4a08-8bea-e52c3365a91d" />
 
 **Donor Dashboard**
 - Explore featured campaigns and category-based listings.
 - Donate instantly with preset or custom amounts.
 - Track all donation history in a dedicated History tab.
 - Update profile and avatar via Profile page.
+<img width="1919" height="866" alt="DonorHome" src="https://github.com/user-attachments/assets/c4cd4efe-7dd9-4a75-8b02-73bc0df0d154" />
+<img width="1919" height="868" alt="DonorHistory" src="https://github.com/user-attachments/assets/c9cdbc62-1766-4033-9d22-f34c89842b5f" />
+<img width="1919" height="867" alt="DonorProfile" src="https://github.com/user-attachments/assets/9ecb4385-5099-4323-892c-4e36bfbe1f7b" />
+<img width="1919" height="866" alt="DonationWindow" src="https://github.com/user-attachments/assets/ea4ea91e-d77f-44a7-8605-dd4a4dbb42f0" />
 
 **Receiver (Fundraiser) Dashboard**
 - Manage personal campaigns.
 - Create new campaigns with image, description, goal, and category.
 - Edit or delete existing campaigns.
 - View progress and approval status.
+<img width="1919" height="865" alt="ReceiverHome" src="https://github.com/user-attachments/assets/c0fa6ac6-0d29-4d91-b4e1-05c675afb920" />
+<img width="1919" height="867" alt="ReceiverCampaign" src="https://github.com/user-attachments/assets/7df6793e-ead9-4393-b694-6766c500b09f" />
 
 **Admin Dashboard**
 - Approve or reject campaigns.
 - Manage categories, donations, and users.
 - Monitor total raised amounts and campaign performance.
+<img width="1919" height="865" alt="AdminHome" src="https://github.com/user-attachments/assets/3b89529d-2115-4265-9508-a677504c90d5" />
+<img width="1919" height="864" alt="AdminCategory" src="https://github.com/user-attachments/assets/98925960-d8d6-4011-9189-f222e0b7a2bb" />
+<img width="1919" height="870" alt="AdminDonationList" src="https://github.com/user-attachments/assets/a046c3bf-725e-4532-af1c-741bb724fa30" />
 
 ---
 
