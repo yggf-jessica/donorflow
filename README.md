@@ -1,16 +1,16 @@
 <p align="center">
-  <font size="100"><b>DonorFlow</b></font><br>
-  <font size="4"><b>Empowering Kindness Through Giving</b></font>
+  <h1 align="center"><b>DonorFlow</b></h1>
+  <h3 align="center">Empowering Kindness Through Giving</h3>
 </p>
 
 ---
 
-<font size="5"><b>Members</b></font>
+## <b>Members</b>
 - **Phyu Mon Thant 6530224**
 - **S Harry Lynn Oo 6530241**
 - **Hein Htet Moe Tun 6530394**
 
-<font size="5"><b>Overview</b></font>
+## <b>Overview</b>
 
 **DonorFlow** is a full-stack charity and crowdfunding web application that connects **donors**, **receivers**, and **administrators** through a seamless giving experience.  
 Users can contribute to fundraising campaigns, create their own campaigns, or manage donations and users through the admin panel.
@@ -18,7 +18,7 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 
 ---
 
-<font size="5"><b>Features</b></font>
+## <b>Features</b>
 
 <font size="4"><b>Multi-Role System</b></font>
 - **Donor** – Browse and contribute to campaigns, track donation history, and manage profile.  
@@ -27,12 +27,12 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 
 <font size="4"><b>Core Functionalities</b></font>
 
-**Authentication & Role Selection**
+## **Authentication & Role Selection**
 - Sign up or log in as **Donor**, **Receiver**, or **Admin**.
 - Intuitive onboarding modal guiding user choice.
 <img width="1919" height="865" alt="Login" src="https://github.com/user-attachments/assets/516c90dd-ab37-4a08-8bea-e52c3365a91d" />
 
-**Donor Dashboard**
+## **Donor Dashboard**
 - Explore featured campaigns and category-based listings.
 - Donate instantly with preset or custom amounts.
 - Track all donation history in a dedicated History tab.
@@ -42,7 +42,7 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 <img width="1919" height="867" alt="DonorProfile" src="https://github.com/user-attachments/assets/9ecb4385-5099-4323-892c-4e36bfbe1f7b" />
 <img width="1919" height="866" alt="DonationWindow" src="https://github.com/user-attachments/assets/ea4ea91e-d77f-44a7-8605-dd4a4dbb42f0" />
 
-**Receiver (Fundraiser) Dashboard**
+## **Receiver (Fundraiser) Dashboard**
 - Manage personal campaigns.
 - Create new campaigns with image, description, goal, and category.
 - Edit or delete existing campaigns.
@@ -50,7 +50,7 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 <img width="1919" height="865" alt="ReceiverHome" src="https://github.com/user-attachments/assets/c0fa6ac6-0d29-4d91-b4e1-05c675afb920" />
 <img width="1919" height="867" alt="ReceiverCampaign" src="https://github.com/user-attachments/assets/7df6793e-ead9-4393-b694-6766c500b09f" />
 
-**Admin Dashboard**
+## **Admin Dashboard**
 - Approve or reject campaigns.
 - Manage categories, donations, and users.
 - Monitor total raised amounts and campaign performance.
@@ -60,7 +60,7 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 
 ---
 
-<font size="5"><b>User Flow Overview</b></font>
+## <b>User Flow Overview</b>
 
 1. Landing Page → Choose to Contribute or Fundraise  
 2. Login / Register → Role-based authentication  
@@ -73,7 +73,7 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 
 ---
 
-<font size="5"><b>Tech Stack</b></font>
+## <b>Tech Stack</b>
 
 | Layer | Technology |
 |-------|-------------|
@@ -86,9 +86,29 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 
 ---
 
-<font size="5"><b>Installation & Setup</b></font>
+## <b>Installation & Setup</b>
 
-**1. Clone the repository**
 ```bash
+# 1. Clone the repository
 git clone https://github.com/yggf-jessica/donorflow.git
 cd donorflow
+
+# 2. Install dependencies (using pnpm)
+npm install -g pnpm
+pnpm install
+
+# 3. Configure environment variables
+# MongoDB database connection
+MONGODB_URI=your_mongodb_connection_string
+
+# JWT authentication secret
+JWT_SECRET=your_jwt_secret_key
+
+# Cloudinary image hosting
+CLOUDINARY_URL=your_cloudinary_url
+
+# API base URL for frontend
+NEXT_PUBLIC_API_URL=http://your_server_ip_or_domain/api
+
+# 4. Run development server
+pnpm dev
