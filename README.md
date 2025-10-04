@@ -1,6 +1,6 @@
 <p align="center">
-  <font size="60"><b>DonorFlow</b></font><br>
-  <font size="40"><b>Empowering Kindness Through Giving</b></font>
+  <font size="6"><b>DonorFlow</b></font><br>
+  <font size="4"><b>Empowering Kindness Through Giving</b></font>
 </p>
 
 ---
