@@ -82,7 +82,6 @@ Users can contribute to fundraising campaigns, create their own campaigns, or ma
 | Database | MongoDB Atlas |
 | Styling | Tailwind CSS / Custom CSS Modules |
 | Deployment | Azure VM (NGINX + PM2) |
-| Image Hosting | Cloudinary |
 | Authentication | JWT-based login with role-based access control |
 
 ---
