@@ -6,12 +6,6 @@ import mongoose from "mongoose";
 
 /* =========================
    GET /api/campaigns
-   Query params:
-     - receiverId (ObjectId)
-     - receiverEmail (string)
-     - q (search)
-     - category (string)
-     - status (APPROVED|REJECTED|PENDING)
    ========================= */
 export async function GET(req) {
   await dbConnect();
@@ -25,7 +19,6 @@ export async function GET(req) {
 
   const filter = {};
 
-  // Prefer receiverId if valid, otherwise resolve by email if provided
   if (receiverId && mongoose.isValidObjectId(receiverId)) {
     filter.receiver = receiverId;
   } else if (receiverEmail) {
@@ -55,13 +48,6 @@ export async function GET(req) {
 
 /* =========================
    POST /api/campaigns
-   Body:
-     - title (required)
-     - description
-     - goalAmount (required, number)
-     - category
-     - images: string[] (URLs)
-     - receiverId OR receiverEmail (required one)
    ========================= */
 export async function POST(req) {
   await dbConnect();
@@ -84,13 +70,14 @@ export async function POST(req) {
     );
   }
 
-  // Require a real receiver
   let receiver = null;
 
   if (receiverId && mongoose.isValidObjectId(receiverId)) {
     receiver = receiverId;
   } else if (receiverEmail) {
-    const usr = await User.findOne({ email: receiverEmail }).select("_id").lean();
+    const usr = await User.findOne({ email: receiverEmail })
+      .select("_id")
+      .lean();
     if (usr?._id) receiver = usr._id.toString();
   }
 
@@ -109,7 +96,7 @@ export async function POST(req) {
     images,
     receiver,
     raisedAmount: 0,
-    status: "PENDING", // new campaigns await admin review
+    status: "PENDING",
   });
 
   const created = await CampaignModel.findById(doc._id).lean();

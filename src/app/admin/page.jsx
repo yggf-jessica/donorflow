@@ -10,7 +10,7 @@ const BORDER = "#e5e7eb";
 const TEXT = "#0f172a";
 const MUTED = "#6b7280";
 
-const API = process.env.NEXT_PUBLIC_API_URL || "/api";
+const API = process.env.NEXT_PUBLIC_API_URL || "/project/api";
 
 export default function AdminPage() {
   return (

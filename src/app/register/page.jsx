@@ -16,7 +16,7 @@ function RegisterContent() {
   const [password, setPassword] = useState("");
   const [working, setWorking] = useState(false);
 
-  const API = process.env.NEXT_PUBLIC_API_BASE || "/api";
+  const API = process.env.NEXT_PUBLIC_API_URL || "/project/api";
 
   const submit = async (e) => {
     e.preventDefault();
