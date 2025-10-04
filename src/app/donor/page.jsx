@@ -11,7 +11,7 @@ const TEXT_MUTED = "#64748b";
 // test comment
 export default function DonorPage() {
   const { user, setUser } = useAuth();
-  const API = process.env.NEXT_PUBLIC_API_URL || "/api";
+  const API = process.env.NEXT_PUBLIC_API_URL || "/project/api";
   const donorId = user?.dbId || user?.id;
 
   /* ---------- campaigns ---------- */

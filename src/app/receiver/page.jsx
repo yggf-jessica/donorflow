@@ -772,3 +772,6 @@ const styles = {
     cursor: "pointer",
   },
 };
+
+
+//we want badges and like things to fx badge
