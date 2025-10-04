@@ -32,7 +32,7 @@ function ReceiverDashboard() {
 
   const [categories, setCategories] = useState([]);
 
-  const API = process.env.NEXT_PUBLIC_API_URL || "/api";
+  const API = process.env.NEXT_PUBLIC_API_URL || "/project/api";
   const DEMO_RECEIVER_ID = "000000000000000000000001";
   const receiverId = user?.dbId || user?.id || null;
   const receiverEmail = user?.email || null;
@@ -326,8 +326,8 @@ function CampaignCard({ c, onEdit, onDelete }) {
           <div style={{ ...styles.progressMiniFill, width: `${pct}%` }} />
         </div>
         <div style={{ display: "flex", gap: 6, marginTop: 6, fontSize: 13 }}>
-          <strong>${fmt(c.raisedAmount)}</strong>
-          <span style={{ color: MUTED }}>of ${fmt(c.goalAmount)}</span>
+          <strong>฿{fmt(c.raisedAmount)}</strong>
+          <span style={{ color: MUTED }}>of ฿{fmt(c.goalAmount)}</span>
         </div>
       </div>
 
